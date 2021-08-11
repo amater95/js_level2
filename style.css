@@ -22,6 +22,11 @@ header {
     padding-right: 20px;
     justify-content: flex-end;
 }
+h2 {
+    color: black;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
 
 .btn-cart {
     width: 133px;
@@ -89,7 +94,9 @@ header {
     float: left;
     padding-bottom: 10px;
 }
-
+.product-item:hover {
+    border-bottom: 5px solid #afafaf;
+}
 .buy-btn {
     width: 74px;
     height: 34px;
@@ -112,4 +119,12 @@ header {
     color: #ffffff;
     background: burlywood;
     outline: none;
+}
+.cart {
+    margin-top: 30px;
+    display: none;
+}
+
+.out {
+    font-weight: bold;
 }
