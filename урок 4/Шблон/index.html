@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RegExp</title>
+    <style>
+        div,
+        .btn {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--1. Дан большой текст, в котором для оформления прямой речи используются одинарные кавычки. Придумать шаблон, который заменяет одинарные кавычки на двойные.-->
+    <!--2. Улучшить шаблон так, чтобы в конструкциях типа aren't одинарная кавычка не заменялась на двойную.-->
+
+    <div class="text">
+
+        Allie: 'Hello. Are you Mark Ryder?'<br>
+        Mark: 'Yes. Are you Allie?'<br>
+        Allie: 'Yes, I am.'<br>
+        Mark: 'Nice to meet you.'<br>
+        Allie: 'And you. Welcome to the UK. Your hotel’s in the city center.'<br>
+        Mark: 'How far is it?'<br>
+        Allie: 'It’s about thirty minutes if the traffic’s OK.'<br>
+        Mark: 'Great.'<br>
+        Allie: 'Would you like a coffee first?'<br>
+        Mark: 'No, I’m fine, thanks.'<br>
+        Allie: 'All right. Let’s go. My car’s in the car park. Can I help you with your bags?'<br>
+        Mark: 'No, it’s OK, thanks.'<br>
+    </div>
+    <button class="btn">Преобразовать</button>
+
+    <div class="out1"></div>
+    <div class="out2"></div>
+
+    <script>
+        function transform() {
+            let text = document.querySelector('.text').textContent;
+            //Замена всех знаков ' на "
+            const regexp = /'/g;
+            console.log(text.replace(regexp, '\"'));
+            document.querySelector('.out1').textContent = text.replace(regexp, '\"');
+
+            //модифицируем формулу
+            console.log(text.replace(/(\W)(')|(^)(')/g, "$1\""));
+            document.querySelector('.out2').textContent = text.replace(/(\W)(')|(^)(')/g, "$1\"");
+
+        }
+
+        document.querySelector('.btn').onclick = transform;
+
+    </script>
+</body>
+
+</html>
