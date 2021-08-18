@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Интернет-магазин</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
@@ -13,17 +13,57 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="app">
         <header>
-            <button class="btn-cart" type="button"><i class="fas fa-shopping-basket icon-cart"></i>Корзина</button>
+            <div class="cart">
+                <form action="#" method="post" class="search-form">
+                    <input type="text" class="search-field" v-model.lazy="searchLine">
+                    <button class="btn-search" type="submit" @click="FilterGoods(searchLine)">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <button class="btn-cart" type="button" @click="isVisibleCart = !isVisibleCart">Корзина</button>
+                <div v-show="isVisibleCart" class="cart-block ">
+                    <div v-show="isCartFull" class="cart-item" v-for="product of cartItems" :key="product.id_product"
+                        :data-id="product.id_product">
+                        <div class="product-bio">
+
+                            <div class="product-desc">
+                                <p class="product-title">{{ product.product_name}}</p>
+                                <span class="product-quantity">{{ product.quantity}} шт. х</span>
+                                <span class="product-single-price">{{product.price}} $</span>
+                            </div>
+                        </div>
+                        <div class="right-block">
+                            <p class="product-price">{{ product.quantity * product.price }} </p>
+                            <button class="del-btn" :data-id="product.id_product" @click="removeProduct(product)">
+                            </button>
+                        </div>
+                    </div>
+                    <div v-show="!isCartFull" class="goods-list">Ваша корзина пуста</div>
+                    <div v-show="isCartFull" class="cart-sum">
+                        Общее количество товаров: {{cartProductsCount}} шт.<br>Общая сумма: {{
+                        cartProductsSum}}$
+                    </div>
+                </div>
+            </div>
         </header>
         <main>
-            <div class="sum"></div>
-            <div class="products"></div>
-        </main>
+            <div class="products">
+                <div class="product-item" v-for="product of products" :key="product.id_product"
+                    :data-id="product.id_product">
 
-        <script src="script/script.js"></script>
+                    <div class="desc">
+                        <h3>{{ product.product_name }}</h3>
+                        <p>{{ product.price }} руб</p>
+                        <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
