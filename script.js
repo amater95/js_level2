@@ -11,7 +11,6 @@ const app = new Vue({
         isCartFull: false,
         cartProductsCount: 0,
         cartProductsSum: 0
-
     },
     computed: {
     },
