@@ -1,4 +1,18 @@
 Vue.component('error', {
-    props: [],
-    template: `<div class="error"><p>Сервер временно не доступен</p></div>`
-});
+    data() {
+        return {
+            text: ''
+        }
+    },
+    methods: {
+        setText(value) {
+            this.text = value;
+        }
+    },
+    template: `<div class="error-block" v-if="text">
+                     <p class="error-msg">
+                     <button class="close-btn" @click="setText('')">&times;</button>
+                     {{text}}
+                     </p>
+                 </div>`
+})
